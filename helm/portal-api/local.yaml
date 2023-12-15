@@ -1,0 +1,27 @@
+environment: "local"
+createIngress: true
+isGke: false
+
+postgres:
+  enabled: false
+  namespace: "accelerator"
+  persistence:
+    size: 1Gi
+  env:
+    POSTGRES_DB: "local-portal-api-db"
+    POSTGRES_HOST: 'postgres-14-alpine'
+    POSTGRES_PASSWORD: "root"
+    POSTGRES_PORT: 5432
+    POSTGRES_USER: "root"
+
+net:
+  host: "api.accelerator.test"
+
+env:
+  ALLOWED_ORIGINS: "http://localhost:4200, http://localhost:4201, http://agency.accelerator.test, http://public.accelerator.test, http://employer.accelerator.test"
+  CERBOS_URI: "127.0.0.1:3592"
+  DB_CONNECTION_URL: "jdbc:postgresql://portal-api-postgres:5432/local-portal-api-db"
+  DB_USERNAME: "root"
+  DB_PASSWORD: "root"
+  GCP_PROJECT_ID: "accelerator-dev"
+  OTEL_SAMPLER_PROBABILITY: 1.0 # valid values: [0.0 - 1.0]
